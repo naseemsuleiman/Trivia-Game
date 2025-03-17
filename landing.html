@@ -291,6 +291,45 @@ a:hover{
             background: #004d00;
             color: white;
         }
+     
+        .glow-text {
+            font-size: 15px;
+            color: white;
+            display: inline-block;
+        }
+
+        .glow-text span {
+            display: inline-block;
+            animation: glow-move 2s ease-out infinite;
+        }
+
+        @keyframes glow-move {
+            0% {
+                text-shadow: none;
+                color: white;
+            }
+            50% {
+                text-shadow: 0 0 10px #5e485e8c, 0 0 20px #ff00ff6e, 0 0 30px #ff00ff83;
+                color: #ff00ff5d;
+            }
+            100% {
+                text-shadow: none;
+                color: white;
+            }
+        }
+
+        /* Delays for each letter to create sequential glow effect */
+        .glow-text span:nth-child(1) { animation-delay: 0s; }
+        .glow-text span:nth-child(2) { animation-delay: 0.1s; }
+        .glow-text span:nth-child(3) { animation-delay: 0.2s; }
+        .glow-text span:nth-child(4) { animation-delay: 0.3s; }
+        .glow-text span:nth-child(5) { animation-delay: 0.4s; }
+        .glow-text span:nth-child(6) { animation-delay: 0.5s; }
+        .glow-text span:nth-child(7) { animation-delay: 0.6s; }
+        .glow-text span:nth-child(8) { animation-delay: 0.7s; }
+        .glow-text span:nth-child(9) { animation-delay: 0.8s; }
+        .glow-text span:nth-child(10) { animation-delay: 0.9s; }
+
     </style>
 </head>
 <body class="background">
@@ -340,6 +379,15 @@ a:hover{
     
 </div>
 </nav><br><br><br><br>
+<h3 class="glow-text">
+    <span>H</span><span>e</span><span>y</span> <span>t</span><span>h</span><span>e</span><span>r</span><span>e</span>, 
+    <span>t</span><span>r</span><span>i</span><span>v</span><span>i</span><span>a</span> <span>f</span><span>a</span><span>n</span><span>s</span>!
+    <span>W</span><span>e</span><span>l</span><span>c</span><span>o</span><span>m</span><span>e</span> <span>t</span><span>o</span> <span>t</span><span>h</span><span>e</span> 
+    <span>g</span><span>a</span><span>m</span><span>e</span>! 
+    <span>G</span><span>e</span><span>t</span> <span>r</span><span>e</span><span>a</span><span>d</span><span>y</span> <span>t</span><span>o</span> 
+    <span>t</span><span>e</span><span>s</span><span>t</span> <span>y</span><span>o</span><span>u</span><span>r</span> <span>k</span><span>n</span><span>o</span><span>w</span><span>l</span><span>e</span><span>d</span><span>g</span><span>e</span> 
+    <span>a</span><span>n</span><span>d</span> <span>h</span><span>a</span><span>v</span><span>e</span> <span>s</span><span>o</span><span>m</span><span>e</span> <span>f</span><span>u</span><span>n</span>.
+</h3>
     <h1>Choose a Trivia Category</h1>
     <div class="container">
         <div class="category-card" data-category="9">
