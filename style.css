@@ -1,0 +1,564 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}
+
+/* General Body Styling */
+body {
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 20px;
+    min-height: 100vh;
+    font-family: "Poppins", sans-serif;
+    background-color: #121212; /* Dark mode fallback */
+}
+
+/* Fullscreen Video Background */
+.video-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+    z-index: -1;
+}
+
+#bg-video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Transparent Navbar */
+.navbar {
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(10px);
+    position: sticky;
+    top: 0;
+    width: 100%;
+    padding: 15px;
+    z-index: 100;
+    display: flex;
+    justify-content: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.navbar ul {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+}
+
+.navbar li {
+    display: inline;
+}
+
+.navbar a {
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
+    transition: 0.3s ease-in-out;
+    padding: 10px 15px;
+    border-radius: 5px;
+}
+
+.navbar a:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: scale(1.05);
+}
+
+/* Main Containers */
+.container, .container1 {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
+    width: 90%;
+    max-width: 600px;
+    margin-top: 80px;
+}
+
+/* Welcome Screen */
+.welcome-screen {
+    background: rgba(0, 0, 0, 0.6);
+    padding: 20px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+h1 {
+    font-size: 28px;
+    margin-bottom: 15px;
+}
+
+/* Select Box */
+label, select {
+    font-size: 16px;
+}
+
+select {
+    padding: 8px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+
+select:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+/* Buttons */
+button {
+    background: linear-gradient(135deg, #ff6b6b, #ff4040);
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    font-size: 18px;
+    border-radius: 5px;
+    transition: all 0.3s ease-in-out;
+}
+
+button:hover {
+    background: linear-gradient(135deg, #ff4040, #ff1f1f);
+    transform: scale(1.05);
+}
+.quiz-content {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(0, 0, 0, 0.9); /* Black box with slight transparency */
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.2); /* Glowing effect */
+    width: 80%;
+    max-width: 600px;
+    text-align: center;
+    color: white;
+    /* display: flex; */
+    flex-direction: column;
+    align-items: center;
+}
+
+
+.quiz-section {
+    opacity: 1;
+    visibility: visible;
+    display: flex;
+    /* position: absolute; */
+    top: 25%;
+    left: 50%;
+    transform: translate(-50%,  -50%);
+    flex-direction: column;
+    text-align: center;
+    background: rgb(0, 0, 0);
+    padding: 20px;
+    border-radius: 10px;
+    position: fixed !important;
+}
+
+
+
+
+/* Answer Buttons */
+.answers {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 15px;
+}
+
+.answer-btn {
+    background: linear-gradient(135deg, #3498db, #2980b9);
+    padding: 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: all 0.3s ease;
+}
+
+.answer-btn:hover {
+    background: linear-gradient(135deg, #2980b9, #1e70a0);
+    transform: translateY(-2px);
+}
+
+/* Timer */
+.timer {
+    margin-top: 15px;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.score-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 80%;
+    max-width: 500px;
+    background: black;
+    padding: 20px;
+    border-radius: 10px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+}
+
+
+.score-section.hidden {
+    display: none; /* ✅ Keeps it hidden when needed */
+}
+
+.score-section:not(.hidden) {
+    display: flex; /* ✅ Shows the section when game ends */
+    flex-direction: column;
+    gap: 10px;
+}
+
+
+/* Modern Leaderboard Style */
+.leaderboard-container {
+    width: 80%;
+    max-width: 600px;
+    margin: 50px auto;
+    background: linear-gradient(135deg, #1e1e2f, #12121a);
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 0 15px rgba(0, 255, 255, 0.6);
+    text-align: center;
+    font-family: 'Poppins', sans-serif;
+}
+
+.leaderboard-title {
+    font-size: 28px;
+    font-weight: 700;
+    color: #ffffff;
+    text-transform: uppercase;
+    text-shadow: 0px 0px 10px rgba(0, 255, 255, 0.8);
+    margin-bottom: 20px;
+}
+
+.leaderboard-list {
+    list-style: none;
+    padding: 0;
+}
+
+.leaderboard-list li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px;
+    margin: 10px 0;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    color: #fff;
+    font-size: 18px;
+    font-weight: 500;
+    box-shadow: 0px 0px 10px rgba(0, 255, 255, 0.3);
+    transition: transform 0.2s;
+}
+
+.leaderboard-list li:hover {
+    transform: scale(1.05);
+}
+
+.rank {
+    font-size: 22px;
+    font-weight: bold;
+    color: #ffd700;
+    width: 30px;
+}
+
+.player-name {
+    flex-grow: 1;
+    text-align: left;
+    padding-left: 15px;
+}
+
+.player-score {
+    font-weight: bold;
+    color: #0ff;
+}
+
+/* Top 3 Ranking Colors */
+.leaderboard-list li:nth-child(1) .rank {
+    color: #ffd700;
+} /* Gold */
+
+.leaderboard-list li:nth-child(2) .rank {
+    color: #c0c0c0;
+} /* Silver */
+
+.leaderboard-list li:nth-child(3) .rank {
+    color: #cd7f32;
+} /* Bronze */
+
+/* Hidden Utility Class */
+.hidden {
+    opacity: 0;
+    visibility: hidden;
+    transform: scale(0.95);
+    pointer-events: none;
+}
+#login-btn {
+    padding: 8px 16px;
+    background-color: #0077ff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  #login-btn:hover {
+    background-color: #005fa3;
+  }
+  /* Modal styles */
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: none;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .modal-content {
+    background-color: white;
+    padding: 20px;
+    border-radius: 5px;
+    text-align: center;
+  }
+  
+  .hidden {
+    display: none;
+  }
+  
+  .close-btn {
+    font-size: 1.5rem;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+  }
+  
+
+
+/* Responsive Design */
+@media (max-width: 600px) {
+    h1 {
+        font-size: 22px;
+    }
+    
+    button {
+        font-size: 16px;
+    }
+    
+    .navbar {
+        padding: 10px;
+    }
+    
+    .navbar a {
+        font-size: 16px;
+        padding: 8px 12px;
+    }
+}
+/* Green for correct answers */
+.correct {
+    background: #2ecc71 !important; /* Green */
+    color: white !important;
+}
+
+/* Red for incorrect answers */
+.incorrect {
+    background: #e74c3c !important; /* Red */
+    color: white !important;
+}
+.hint-btn {
+    background: #f1c40f;
+    color: black;
+    padding: 8px 15px;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    border-radius: 5px;
+    margin-top: 10px;
+    transition: all 0.3s ease-in-out;
+}
+
+.hint-btn:hover {
+    background: #f39c12;
+}
+
+#hint {
+    font-size: 16px;
+    color: #f1c40f;
+    margin-top: 10px;
+}
+
+
+.submit-answer {
+    background: #2ecc71;
+    color: white;
+    font-size: 18px;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s ease;
+    display: block;
+    margin: 10px auto;
+}
+
+.submit-answer:hover {
+    background: #27ae60;
+}
+
+/* ✅ Hint Styling */
+.hint-btn {
+    background: #f1c40f;
+    color: black;
+    padding: 8px 15px;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    border-radius: 5px;
+    margin-top: 10px;
+    transition: all 0.3s ease-in-out;
+}
+
+.hint-btn:hover {
+    background: #f39c12;
+}
+
+#hint {
+    font-size: 16px;
+    color: #f1c40f;
+    margin-top: 10px;
+}
+.hidden { display: none; }
+/* Enhanced Glowing Progress Circle */
+.progress-container {
+    position: relative;
+    width: 200px;
+    height: 200px;
+    margin: 20px auto;
+    background: radial-gradient(circle, rgba(10, 10, 10, 0.9), rgba(0, 0, 0, 0.5));
+    border-radius: 50%;
+    box-shadow: 0 0 30px rgba(0, 255, 255, 0.9), 0 0 60px rgba(0, 255, 255, 0.5);
+    animation: pulse-glow 2s infinite alternate;
+}
+
+/* Background Circle */
+.bg-circle {
+    fill: none;
+    stroke: rgba(255, 255, 255, 0.15);
+    stroke-width: 12;
+}
+
+/* Foreground Circle (Dynamic Progress) */
+.fg-circle {
+    fill: none;
+    stroke-width: 12;
+    stroke-linecap: round;
+    stroke-dasharray: 440;
+    stroke-dashoffset: 440;
+    transition: stroke-dashoffset 1.5s ease-in-out, stroke 1s ease-in-out;
+}
+
+/* Gradient Color Transition for Progress */
+.fg-circle.low {
+    stroke: url(#gradient-red);
+    filter: drop-shadow(0px 0px 25px rgba(255, 0, 0, 1));
+}
+
+.fg-circle.medium {
+    stroke: url(#gradient-yellow);
+    filter: drop-shadow(0px 0px 25px rgba(241, 196, 15, 1));
+}
+
+.fg-circle.high {
+    stroke: url(#gradient-green);
+    filter: drop-shadow(0px 0px 25px rgba(0, 255, 0, 1));
+}
+
+/* Score Text in Center - Premium & Sleek */
+.score-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 20px;
+    font-weight: 600;
+    color: #ffffff; /* Bright white */
+    text-shadow: 0px 0px 12px rgba(255, 255, 255, 0.7), 0px 0px 18px rgba(0, 255, 255, 0.9);
+    letter-spacing: 2px;
+    font-family: 'Poppins', sans-serif;
+    opacity: 1;
+    transition: all 0.3s ease-in-out;
+    animation: neon-glow 1.5s infinite alternate;
+    text-transform: uppercase;
+}
+
+/* Neon Glow Animation for Text */
+@keyframes neon-glow {
+    from {
+        text-shadow: 0px 0px 12px rgba(255, 255, 255, 0.7), 0px 0px 18px rgba(0, 255, 255, 0.9);
+    }
+    to {
+        text-shadow: 0px 0px 20px rgba(255, 255, 255, 1), 0px 0px 30px rgba(0, 255, 255, 1);
+        transform: translate(-50%, -50%) scale(1.1);
+    }
+}
+
+/* Glowing Pulsing Animation */
+@keyframes pulse-glow {
+    from {
+        box-shadow: 0 0 30px rgba(0, 255, 255, 0.9), 0 0 60px rgba(0, 255, 255, 0.5);
+    }
+    to {
+        box-shadow: 0 0 40px rgba(0, 255, 255, 1), 0 0 70px rgba(0, 255, 255, 0.7);
+    }
+}
+
+.highscore-notification {
+    position:fixed;
+    top: 60px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: linear-gradient(135deg, #00f7ff, #00d9ff);
+    color: white;
+    font-size: 20px;
+    font-weight: bold;
+    padding: 15px 25px;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(255, 204, 0, 0.8);
+    text-align: center;
+    animation: pop 0.5s ease-in-out;
+}
+
+@keyframes pop {
+    from {
+        transform: translateX(-50%) scale(0.8);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(-50%) scale(1);
+        opacity: 1;
+    }
+}

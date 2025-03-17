@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Leaderboard</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    
+    <div class="video-container">
+        <video autoplay muted loop id="bg-video">
+            <source src="istockphoto-1409516100-640_adpp_is.mp4" type="video/mp4">
+        </video>
+    </div>
+
+    <nav class="navbar">
+        <ul>
+            <li><a href="landing.html">Home</a></li>
+            <li><a href="index.html">Play</a></li>
+            <li><a href="leader.html" class="active">Leaderboard</a></li>
+        </ul>
+    </nav>
+
+    <div class="leaderboard-container">
+        <h1>🏆 Leaderboard 🏆</h1>
+
+        <h2>Local Players</h2>
+        <ul style="text-decoration: none;" id="local-leaderboard"></ul>
+
+      
+
+        <button id="clear-leaderboard">Clear Leaderboard</button>
+    </div>
+    <audio id="background-audio" loop>
+        <source src="1-efek-sound-1-220034.mp3" type="audio/mp3">
+    </audio>
+    <script>
+    document.addEventListener("DOMContentLoaded", () => {
+    const localLeaderboard = document.getElementById("local-leaderboard");
+
+    function loadLocalLeaderboard() {
+        let leaderboard = JSON.parse(localStorage.getItem("leaderboard")) || [];
+        localLeaderboard.innerHTML = "";
+
+        leaderboard.forEach((entry, index) => {
+            const listItem = document.createElement("li");
+            listItem.innerHTML = `
+                <span class="rank">#${index + 1}</span>
+                <span class="player-name">${entry.name}</span>
+                <span class="player-score">${entry.score} pts</span>
+            `;
+            localLeaderboard.appendChild(listItem);
+        });
+    }
+
+    loadLocalLeaderboard();
+
+
+    
+
+    // Clear leaderboard functionality
+    clearButton.addEventListener("click", () => {
+        localStorage.removeItem("leaderboard"); // Remove leaderboard from localStorage
+        loadLocalLeaderboard(); // Reload the leaderboard to show it's cleared
+    });
+
+    loadLocalLeaderboard();
+    loadOnlineLeaderboard();
+});
+
+
+
+    </script>
+    <script src="script.js"></script>
+</body>
+</html>
+

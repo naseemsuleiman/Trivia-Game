@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Trivia Game</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="video-container">
+      <video autoplay muted loop id="bg-video">
+        <source src="istockphoto-1409516100-640_adpp_is.mp4" type="video/mp4" />
+      </video>
+    </div>
+    <nav class="navbar">
+      <ul>
+        <li><a href="landing.html" class="active">Home</a></li>
+        <li><a href="index.html">Play</a></li>
+        <li><a href="leader.html">Leaderboard</a></li>
+      </ul>
+ 
+  
+    </nav>
+    <br /><br /><br /><br /><br /><br />
+    <section class="welcome-screen">
+      <h1>Welcome to Trivia Game</h1>
+      <label for="difficulty">Select Difficulty:</label>
+      <select id="difficulty">
+        <option value="easy">Easy</option>
+        <option value="medium">Medium</option>
+        <option value="hard">Hard</option>
+      </select>
+      <label for="question-count">Select Number of Questions:</label>
+      <select id="question-count">
+        <option value="5" selected>5</option>
+        <option value="10">10</option>
+        <option value="15">15</option>
+        <option value="20">20</option>
+      </select>
+
+      <button class="start-btn">Start Game</button>
+    </section>
+    <div class="quiz-content hidden">
+      <h3 id="question-number"></h3>
+        <h2 id="question">Loading question...</h2>
+        <div class="answers"></div>
+        <div class="hint-timer">
+            <button class="hint-btn">Show Hint</button>
+            <p id="hint" class="hidden"></p>
+            <div class="timer">Time left: <span id="timer">30</span>s</div>
+        </div>
+    </div>
+    
+    
+    
+    <section class="score-section hidden ">
+        <h2>Game Over</h2>
+        
+        <!-- ✅ Glowing Circular Progress Bar -->
+        <div class="progress-container">
+            <svg class="progress-circle" width="160" height="160">
+                <defs>
+                    <linearGradient id="glow-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" stop-color="#00ffcc"/>
+                        <stop offset="100%" stop-color="#0077ff"/>
+                    </linearGradient>
+                </defs>
+                <!-- <circle class="bg-circle" cx="80" cy="80" r="70"></circle> -->
+                <!-- <circle class="fg-circle" cx="80" cy="80" r="70"></circle> -->
+            </svg>
+            <div class="score-text">
+                <span id="final-score">0%</span>
+            </div>
+        </div>
+    
+        <p id="feedback"></p>
+        <button class="restart-btn">Restart</button>
+    </section>
+    
+    <audio id="background-audio" loop>
+        <source src="1-efek-sound-1-220034.mp3" type="audio/mp3">
+    </audio>
+
+    <section class="leaderboard-section hidden">
+      <h2>Leaderboard</h2>
+      <ul id="leaderboard"></ul>
+    </section>
+   
+    <svg width="0" height="0">
+        <defs>
+            <linearGradient id="gradient-green" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" stop-color="#00ff00"/>
+                <stop offset="100%" stop-color="#00cc66"/>
+            </linearGradient>
+            <linearGradient id="gradient-yellow" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" stop-color="#f1c40f"/>
+                <stop offset="100%" stop-color="#ff9900"/>
+            </linearGradient>
+            <linearGradient id="gradient-red" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" stop-color="#ff0000"/>
+                <stop offset="100%" stop-color="#cc0000"/>
+            </linearGradient>
+        </defs>
+    </svg>
+     <script src="script.js"></script>
+  </body>
+</html>

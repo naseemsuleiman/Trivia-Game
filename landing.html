@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trivia Game - Choose Category</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+        .hidden {
+            display: none;
+        }
+       body {
+            background: linear-gradient(135deg, #000000, #060c16);
+            color: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            padding: 20px;
+            min-height: 100vh;
+            font-family: "Poppins", sans-serif;
+        }
+
+        #overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(5px);
+            z-index: 4;
+            display: none;
+        }
+        nav {
+            width: 100%;
+            background: rgba(0, 0, 0, 0.178);
+            padding: 15px 0;
+            position: fixed;
+            top: 0;
+            left: 0;
+            display: flex;
+            justify-content: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0);
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 20px;
+        }
+
+        nav ul li {
+            display: inline;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+            padding: 10px 15px;
+            border-radius: 5px;
+            transition: 0.3s;
+        }
+
+        nav ul li a:hover {
+            background: #ff6b6b;
+        }
+
+        .container {
+            margin-top: 80px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            width: 90%;
+            max-width: 800px;
+        }
+
+        .category-card {
+            background: rgba(29, 26, 26, 0.1);
+            border-radius: 10px;
+            padding: 15px;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(255, 255, 255, 0.2);
+            transition: transform 0.3s ease-in-out;
+            cursor: pointer;
+        }
+
+        .category-card img {
+            width: 100%;
+            border-radius: 10px;
+            height: 150px;
+            object-fit: cover;
+        }
+
+        .category-card:hover {
+            transform: scale(1.05);
+        }
+        .login-container {
+    position: absolute;
+    right: 20px;
+    top: 15px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+}
+
+.user-info {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    /* background: rgba(0, 0, 0, 0.5); */
+    padding: 5px 10px;
+    border-radius: 8px;
+    cursor: pointer;
+}
+a{
+    color: aliceblue;
+    text-decoration: none;
+}
+a:hover{
+    color: #ff6b6b;
+}
+#login-icon {
+    font-size: 28px;
+    cursor: pointer;
+    color: white !important;
+    transition: transform 0.3s ease-in-out;
+    cursor: pointer;
+}
+
+#login-icon:hover {
+    color: #ff6b6b;
+    transform: scale(1.1);
+}
+.profile-pic {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+}
+.username {
+    color: white;
+    font-size: 16px;
+}
+
+.dropdown {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background: white !important;
+    list-style: none;
+    padding: 10px;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+}
+
+
+
+.dropdown.hidden {
+    display: none;
+}
+
+
+
+.dropdown li a {
+    color: black !important;
+    text-decoration: none;
+    padding: 5px 10px;
+    display: block;
+}
+.dropdown li a:hover {
+    background: #ff6b6b;
+}
+
+
+
+.hidden {
+    display: none;
+}
+.dropdown.hidden {
+.hidden {
+    display: none;
+}}
+.modal {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: black;
+            padding: 20px;
+            border-radius: 10px;
+            z-index: 10;
+            /* color: black; */
+            width: 300px;
+            text-align: center;
+        }
+
+        .modal input {
+            width: 100%;
+            margin-top: 10px;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+        }
+        .modal button{
+            width: 50%;
+            padding: 10px;
+            border-radius: 5px;
+            border:none;
+        }
+        .modal button:hover{
+            color: #ff6b6b;
+        }
+        .profile-upload {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .profile-preview {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid #ff6b6b;
+            display: none;
+        }
+
+        .custom-file-upload {
+            display: inline-block;
+            padding: 10px 15px;
+            background: #ff6b6b;
+            color: white;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .custom-file-upload:hover {
+            background: #e04e4e;
+        }
+
+        .modal input[type="file"] {
+            display: none;
+        }
+        .dropdown {
+            position: absolute;
+            top: 100%;
+            right: 0;
+            background: rgba(0, 0, 0, 0.8);
+            list-style: none;
+            padding: 10px;
+            border-radius: 5px;
+            display: none;
+        }
+
+        .dropdown li a {
+            color: white;
+            text-decoration: none;
+            padding: 5px 10px;
+            display: block;
+        }
+
+        .dropdown li a:hover {
+            background: #ff6b6b;
+        }
+
+        .dropdown.show {
+            display: block;
+        }
+        body[data-theme='light'] {
+            background: #ffffff;
+            color: black;
+        }
+
+        body[data-theme='dark'] {
+            background: #000000;
+            color: white;
+        }
+
+        body[data-theme='blue'] {
+            background: #001f3f;
+            color: white;
+        }
+
+        body[data-theme='green'] {
+            background: #004d00;
+            color: white;
+        }
+    </style>
+</head>
+<body class="background">
+    
+    <nav>
+        <ul>
+            <li><a href="landing.html">Home</a></li>
+            <li><a href="index.html">Play</a></li>
+            <li><a href="leader.html">Leaderboard</a></li>
+        </ul>
+        <div class="login-container">
+            <div class="login-container" id="login-container">
+                <i id="login-icon" class="fas fa-user-circle"></i>
+            </div>
+    
+    <!-- Background Overlay (for blur effect) -->
+<div id="overlay" class="hidden"></div>
+<!-- Login Modal -->
+<div id="login-modal" class="modal hidden">
+    <span class="close-btn" id="close-btn">&times;</span>
+    <h2>Welcome Back!</h2>
+    <p>Please enter your name and upload a profile picture.</p>
+    <input type="text" id="username" placeholder="Your Name" /><br><br>
+    <div class="profile-upload">
+        <img id="profile-preview" class="profile-preview" src="" alt="Profile Preview">
+        <label for="profile-pic" class="custom-file-upload">Upload Profile Picture</label>
+        <input type="file" id="profile-pic" accept="image/*">
+    </div><br><br>
+    <button id="submit-btn">Create Account</button>
+</div>
+
+<!-- Settings Modal -->
+<div id="settings-modal" class="modal hidden">
+    <h2>Game Settings</h2>
+    <label>
+        <input type="checkbox" id="sound-toggle"> Enable Background Sound
+    </label>
+    <br><br><br>
+    <label for="theme-select">Choose Theme:</label><br><br>
+    <select id="theme-select">
+        <option value="light">Light Mode</option>
+        <option value="dark">Dark Mode</option>
+        <option value="blue">Blue Theme</option>
+        <option value="green">Green Theme</option>
+    </select>
+    <span class="close-btn" id="settings-close">&times;</span>
+    
+</div>
+</nav><br><br><br><br>
+    <h1>Choose a Trivia Category</h1>
+    <div class="container">
+        <div class="category-card" data-category="9">
+            <img src="general.jpg" alt="General Knowledge">
+            <h3 >General Knowledge</h3>
+        </div>
+        <div class="category-card" data-category="18">
+            <img src="science.jpg" alt="Science">
+            <h3 >Science</h3>
+        </div>
+        <div class="category-card" data-category="21">
+            <img src="sports.jpg" alt="Sports">
+            <h3 >Sports</h3>
+        </div>
+        <div class="category-card" data-category="23">
+            <img src="history.jpg" alt="History">
+            <h3 >History</h3>
+        </div>
+        <div class="category-card" data-category="11">
+            <img src="movies.jpg" alt="Movies">
+            <h3 >Movies</h3>
+        </div>
+    </div>
+    <audio id="background-audio" loop>
+        <source src="1-efek-sound-1-220034.mp3" type="audio/mp3">
+    </audio>
+    <script>
+document.addEventListener("DOMContentLoaded", () => {
+    function logout() {
+        localStorage.removeItem("username");
+        localStorage.removeItem("profilePic");
+        location.reload();
+    }
+
+    const loginContainer = document.getElementById("login-container");
+    const loginModal = document.getElementById("login-modal");
+    const closeBtn = document.getElementById("close-btn");
+    const submitBtn = document.getElementById("submit-btn");
+    const overlay = document.getElementById("overlay");
+    const profilePicInput = document.getElementById("profile-pic");
+    const profilePreview = document.getElementById("profile-preview");
+    const usernameInput = document.getElementById("username");
+    const settingsModal = document.getElementById("settings-modal");
+    const settingsClose = document.getElementById("settings-close");
+
+    const savedUsername = localStorage.getItem("username");
+    const savedProfilePic = localStorage.getItem("profilePic");
+    if (savedUsername && savedProfilePic) {
+        loginContainer.innerHTML = `
+            <div class="user-info" id="user-dropdown">
+                <img src="${savedProfilePic}" class="profile-pic" alt="Profile Pic" style="width: 50px; height: 50px; border-radius: 50%;">
+                <span class="username">${savedUsername}</span>
+                <ul class="dropdown">
+                    <li><a href="#" id="settings">Settings</a></li>
+                    <li><a href="#" id="logout">Logout</a></li>
+                </ul>
+            </div>`;
+        
+        document.getElementById("user-dropdown").addEventListener("click", () => {
+            document.querySelector(".dropdown").classList.toggle("show");
+        });
+        document.getElementById("logout").addEventListener("click", logout);
+        document.getElementById("settings").addEventListener("click", () => {
+            settingsModal.style.display = "block";
+        });
+    }
+
+    document.getElementById("login-icon")?.addEventListener("click", () => {
+        loginModal.style.display = "block";
+        overlay.style.display = "block";
+    });
+
+    closeBtn.addEventListener("click", () => {
+        loginModal.style.display = "none";
+        overlay.style.display = "none";
+    });
+
+    settingsClose.addEventListener("click", () => {
+        settingsModal.style.display = "none";
+    });
+
+    submitBtn.addEventListener("click", () => {
+        const username = usernameInput.value.trim();
+        const file = profilePicInput.files[0];
+        if (username && file) {
+            const reader = new FileReader();
+            reader.onload = function (e) {
+                localStorage.setItem("username", username);
+                localStorage.setItem("profilePic", e.target.result);
+                location.reload();
+            };
+            reader.readAsDataURL(file);
+        } else {
+            alert("Please enter a valid name and upload a profile picture.");
+        }
+    });
+});
+document.addEventListener("DOMContentLoaded", () => {
+    const soundToggle = document.getElementById("sound-toggle");
+    const themeSelect = document.getElementById("theme-select");
+    const backgroundAudio = document.getElementById("background-audio");
+
+    // Load saved settings
+    if (localStorage.getItem("soundEnabled") === "true") {
+        soundToggle.checked = true;
+        backgroundAudio.play();
+    }
+    
+    if (localStorage.getItem("selectedTheme")) {
+        document.body.setAttribute("data-theme", localStorage.getItem("selectedTheme"));
+        themeSelect.value = localStorage.getItem("selectedTheme");
+    }
+
+    // Sound Toggle
+    soundToggle.addEventListener("change", () => {
+        if (soundToggle.checked) {
+            backgroundAudio.play();
+            localStorage.setItem("soundEnabled", "true");
+        } else {
+            backgroundAudio.pause();
+            localStorage.setItem("soundEnabled", "false");
+        }
+    });
+
+    // Theme Selection
+    themeSelect.addEventListener("change", () => {
+        const selectedTheme = themeSelect.value;
+        document.body.setAttribute("data-theme", selectedTheme);
+        localStorage.setItem("selectedTheme", selectedTheme);
+    });
+});
+document.addEventListener("DOMContentLoaded", () => {
+    const categoryCards = document.querySelectorAll(".category-card");
+
+    categoryCards.forEach(card => {
+        card.addEventListener("click", () => {
+            const selectedCategory = card.getAttribute("data-category");
+            sessionStorage.setItem("selectedCategory", selectedCategory);
+            window.location.href = "index.html";
+        });
+    });
+});
+function savePlayerName(name) {
+    localStorage.setItem("playerName", name);
+}
+
+
+    </script>
+    
+    
+    
+    <script src="script.js"></script>
+</body>
+</html>
+
