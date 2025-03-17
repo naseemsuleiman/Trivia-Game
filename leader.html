@@ -24,12 +24,7 @@
 
     <div class="leaderboard-container">
         <h1>🏆 Leaderboard 🏆</h1>
-
-        <h2>Local Players</h2>
-        <p style="text-decoration: none;" id="local-leaderboard"></p>
-
-      
-
+        <li  id="local-leaderboard"></li>
         <button id="clear-leaderboard">Clear Leaderboard</button>
     </div>
     <audio id="background-audio" loop>
@@ -44,7 +39,7 @@
         localLeaderboard.innerHTML = "";
 
         leaderboard.forEach((entry, index) => {
-            const listItem = document.createElement("h4");
+            const listItem = document.createElement("li");
             listItem.innerHTML = `
                 <span class="rank">#${index + 1}</span>
                 <span class="player-name">${entry.name}</span>
