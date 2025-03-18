@@ -1,15 +1,15 @@
 document.addEventListener("DOMContentLoaded", () => {
-    const startBtn = document.querySelector(".start-btn");
-    const welcomeScreen = document.querySelector(".welcome-screen");
-    const quizSection = document.querySelector(".quiz-content");
-    const questionElement = document.getElementById("question");
-    const answersContainer = document.querySelector(".answers");
-    const scoreSection = document.querySelector(".score-section");
-    const finalScore = document.getElementById("final-score");
-    const restartBtn = document.querySelector(".restart-btn");
-    const timerElement = document.getElementById("timer");
-    const hintText = document.getElementById("hint");
-    const hintBtn = document.querySelector(".hint-btn");
+    let startBtn = document.querySelector(".start-btn");
+    let welcomeScreen = document.querySelector(".welcome-screen");
+    let quizSection = document.querySelector(".quiz-content");
+    let questionElement = document.getElementById("question");
+    let answersContainer = document.querySelector(".answers");
+    let scoreSection = document.querySelector(".score-section");
+    let finalScore = document.getElementById("final-score");
+    let restartBtn = document.querySelector(".restart-btn");
+    let timerElement = document.getElementById("timer");
+    let hintText = document.getElementById("hint");
+    let hintBtn = document.querySelector(".hint-btn");
 
     let questions = [];
     let currentQuestionIndex = 0;
