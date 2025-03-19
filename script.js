@@ -154,17 +154,17 @@ document.addEventListener("DOMContentLoaded", () => {
             feedbackMessage = "💡 Keep practicing! You'll do better next time!";
         }
         document.getElementById("feedback").textContent = feedbackMessage;
-        // ✅ Get the logged-in player's name
+        //  Get the logged-in player's name
     let playerName = localStorage.getItem("username") || "Guest";
 
-    // ✅ Save to Leaderboard
+    //  Save to Leaderboard
     let leaderboard = JSON.parse(localStorage.getItem("leaderboard")) || [];
     leaderboard.push({ name: playerName, score: score, date: new Date().toLocaleString() });
 
-    // ✅ Sort by highest score
+    //  Sort by highest score
     leaderboard.sort((a, b) => b.score - a.score);
 
-    // ✅ Limit leaderboard to top 10 scores
+    //  Limit leaderboard to top 10 scores
     leaderboard = leaderboard.slice(0, 10);
 
     localStorage.setItem("leaderboard", JSON.stringify(leaderboard));
@@ -177,7 +177,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
     
-    // ✅ Function to Show Highscore Notification
+    //  Function to Show Highscore Notification
     function showHighscoreNotification() {
         const notification = document.createElement("div");
         notification.classList.add("highscore-notification");
